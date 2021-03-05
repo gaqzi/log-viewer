@@ -15,8 +15,7 @@ var (
 	splitAt = flag.String(
 		"sep",
 		"",
-		"if the string does not start with '{' "+
-			"then split by this character and indent the rest of the line",
+		"if the line doesn't format as JSON then try to split by this sep and format",
 	)
 	style = flag.String(
 		"style",
