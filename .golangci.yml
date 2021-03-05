@@ -346,11 +346,8 @@ linters:
     - bodyclose
     - deadcode
     - depguard
-    - dogsled
     - dupl
     - errcheck
-    - exhaustive
-    - funlen
     - gochecknoinits
     - goconst
     - gocritic
@@ -358,19 +355,13 @@ linters:
     - gofmt
     - goimports
     - golint
-    - gomnd
-    - goprintffuncname
     - gosec
     - gosimple
     - govet
     - ineffassign
     - lll
     - misspell
-    - nestif
     - nakedret
-    - noctx
-    - nolintlint
-    - rowserrcheck
     - scopelint
     - staticcheck
     - structcheck
@@ -380,9 +371,7 @@ linters:
     - unparam
     - unused
     - varcheck
-    - whitespace
     - megacheck
-    - wsl
   disable:
     - prealloc
   disable-all: false
