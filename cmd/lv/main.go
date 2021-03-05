@@ -30,7 +30,7 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		line := scanner.Text()
+		line := scanner.Text() + "\n"
 		str, err := lv.JSON(line)
 
 		if err != nil {
@@ -51,7 +51,7 @@ func main() {
 				continue
 			}
 
-			print(splits[0])
+			print(splits[0] + "\n")
 		}
 
 		if err := quick.Highlight(
