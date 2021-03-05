@@ -34,20 +34,24 @@ func main() {
 		str, err := lv.JSON(line)
 
 		if err != nil {
-			if *splitAt != "" {
-				splits := strings.SplitN(line, *splitAt, 2)
-				if len(splits) == 2 {
-					println(splits[0])
-					str, err = lv.JSON(splits[1], true)
-					if err != nil {
-						print(line)
-						continue
-					}
-				}
-			} else {
+			if *splitAt == "" {
 				print(line)
 				continue
 			}
+
+			splits := strings.SplitN(line, *splitAt, 2)
+			if len(splits) != 2 {
+				print(line)
+				continue
+			}
+
+			str, err = lv.JSON(splits[1], true)
+			if err != nil {
+				print(line)
+				continue
+			}
+
+			print(splits[0])
 		}
 
 		if err := quick.Highlight(
