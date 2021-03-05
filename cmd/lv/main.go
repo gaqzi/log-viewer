@@ -22,10 +22,30 @@ var (
 		"base16-snazzy",
 		"colorizes JSON output with this style. ",
 	)
+	noColor = flag.Bool("no-color", false, "if set will not colorize the output")
 )
+
+func colorize(s string) {
+	if err := quick.Highlight(
+		os.Stdout,
+		s,
+		"json",
+		"terminal256",
+		*style,
+	); err != nil {
+		print(s)
+	}
+}
 
 func main() {
 	flag.Parse()
+
+	printJSON := colorize
+	if *noColor {
+		printJSON = func(s string) {
+			print(s)
+		}
+	}
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
@@ -53,14 +73,6 @@ func main() {
 			print(splits[0] + "\n")
 		}
 
-		if err := quick.Highlight(
-			os.Stdout,
-			string(str),
-			"json",
-			"terminal256",
-			*style,
-		); err != nil {
-			print(str)
-		}
+		printJSON(string(str))
 	}
 }
